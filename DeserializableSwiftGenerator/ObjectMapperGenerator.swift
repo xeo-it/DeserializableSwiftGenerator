@@ -13,7 +13,7 @@ final class ObjectMapperGenerator: SWGenerator {
     // MARK: SWGeneratorProtocol
     
     override var deserialzeProtocolName: String? {
-        return "MapperProtocol"
+        return "Object,Mappable"
     }
     
     override func generateClassBody(sw: SWClass) -> String {
@@ -28,10 +28,11 @@ final class ObjectMapperGenerator: SWGenerator {
     func generateInit(sw: SWClass) -> String {
         var initMethod = "\n\t// MARK: Mappable\n\n\t"
         initMethod += sw.superName == nil ? "" : "override "
-        initMethod += "class func newInstance(map: Map) -> Mappable? {\n"
-        initMethod += "\t\treturn " + sw.name + "()\n"
+        initMethod += "required convenience init?(_ map: Map) {\n"
+        initMethod += "\t\tself.init()\n"
         initMethod += "\t}\n"
         return initMethod
+        
     }
     
     func generateMap (sw: SWClass) -> String {

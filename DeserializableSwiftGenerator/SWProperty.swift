@@ -18,6 +18,6 @@ final class SWProperty {
     }
     
     func getVariableLine () -> String {
-        return "var " + name + ": " + type + "?"
+        return "dynamic var " + name + ": " + type + "?"
     }
 }
